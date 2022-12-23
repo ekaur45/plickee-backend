@@ -75,6 +75,11 @@ const getVideoSegmentSrv = async id =>{
     const result = await mysqlSelect(query,[id]);
     return result;
 }
+const getAllSegmentSrv = async id =>{
+    let query = 'call sp_get_all_links();';
+    const result = await mysqlSelect(query,[id]);
+    return result;
+}
 const getVideosSrv = async function (obj) {
     let query = 'call sp_get_public_video();';
     const result = await mysqlSelect(query, []);
@@ -149,4 +154,4 @@ const addBlurCensorSrv = async function(arr){
 const updateAudioCensorFileSrv = async function(obj){
     
 }
-module.exports = { getVideosSrv ,uploadVideoSrv,myVideosSrv,deleteVideoSrv,getVideoSrv,addVideoSegmentSrv,getVideoSegmentSrv,addCensorsSrv,getCensorSrv,addBlurCensorSrv,updateAudioCensorFileSrv};
+module.exports = { getVideosSrv ,uploadVideoSrv,myVideosSrv,deleteVideoSrv,getVideoSrv,addVideoSegmentSrv,getVideoSegmentSrv,addCensorsSrv,getCensorSrv,addBlurCensorSrv,updateAudioCensorFileSrv,getAllSegmentSrv};

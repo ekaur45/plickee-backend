@@ -4,7 +4,8 @@ const { AddSegmentRequest } = require("../../models/video/add-segment.model");
 const { getVideosSrv, uploadVideoSrv, myVideosSrv, deleteVideoSrv, getVideoSrv, addVideoSegmentSrv, getVideoSegmentSrv,
     addCensorsSrv,
     getCensorSrv,
-    addBlurCensorSrv
+    addBlurCensorSrv,
+    getAllSegmentSrv
 } = require("../../services/video/video.service");
 
 /**
@@ -93,6 +94,18 @@ const getVideoSegment = async function (req, res, next) {
     res.BadRequest(result);
 }
 /**
+ * @param {import("express").Request} req 
+ * @param {import("express").Response} res 
+ * @param {import("express").NextFunction} next 
+ */
+const getAllSegment = async function (req, res, next) {
+    const result = await getAllSegmentSrv();
+    if (result.success) {
+        return res.Ok(result.data);
+    }
+    res.BadRequest(result);
+}
+/**
  * 
  * @param {import("express").Request} req 
  * @param {import("express").Response} res 
@@ -173,4 +186,4 @@ const getCensor = async function (req, res, next) {
 
 
 }
-module.exports = { getVideos, uploadVideo, myVideos, deleteVideo, getVideo, addVideoSegment, getVideoSegment, addCensors, getCensor,addBlurCensor };
+module.exports = { getVideos, uploadVideo, myVideos, deleteVideo, getVideo, addVideoSegment, getVideoSegment, addCensors, getCensor,addBlurCensor,getAllSegment };
