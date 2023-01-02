@@ -43,5 +43,5 @@ jobs:
                git pull origin main
                npm install
                pm2 delete Plickee_Backend
-               pm2 start app.js --name Plickee_Backend
+               pm2 start bin/www.js --name Plickee_Backend
             
