@@ -32,7 +32,7 @@ jobs:
 
     steps:
      - name: SSH deploy
-       uses: ekaur45/plickee-backend@main
+       uses: appleboy/ssh-action@master
        with:
           host: ${{ secrets.HOST }}
           username:  ${{ secrets.USER }}
