@@ -1,4 +1,4 @@
-name: Plickee_Backend_Deploy
+name: plickee backend deploy
 
 on:
   push:
