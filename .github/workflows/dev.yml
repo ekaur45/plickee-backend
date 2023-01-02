@@ -1,0 +1,48 @@
+name: node js ci cd learning
+
+on:
+  push:
+    branches:
+        - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use node js
+        uses: actions/setup-node@v1
+        with:
+         node-version: ${{ matrix.node-version }}
+      - name: npm install
+        run: |
+          npm install
+
+        env: 
+          CI: true   
+
+
+  depoly:
+    needs: [build]
+    runs-on: ubuntu-latest
+
+    steps:
+     - name: SSH deploy
+       uses: appleboy/ssh-action@master
+       with:
+          host: ${{ secrets.HOST }}
+          username:  ${{ secrets.USER }}
+          key:  ${{ secrets.KEY }}
+          port:  ${{ secrets.PORT }}
+          script: |
+               cd /home/ubuntu/github/plickee-backend/plickee-backend
+               git pull origin main
+               npm install
+               pm2 delete plickeeapi
+               pm2 start bin/www.js --name plickeeapi
+            
+
