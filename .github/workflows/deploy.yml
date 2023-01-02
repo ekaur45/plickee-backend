@@ -39,7 +39,7 @@ jobs:
           key:  ${{ secrets.KEY }}
           port:  ${{ secrets.PORT }}
           script: |
-               cd /home/ubuntu/github/node__plickee
+               cd /home/ubuntu/github/plickee-backend
                git pull origin main
                npm install
                pm2 delete plickeeapi
