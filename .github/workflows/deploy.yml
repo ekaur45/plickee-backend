@@ -1,4 +1,4 @@
-name: plickee backend deploy
+name: node js ci cd learning
 
 on:
   push:
@@ -39,9 +39,9 @@ jobs:
           key:  ${{ secrets.KEY }}
           port:  ${{ secrets.PORT }}
           script: |
-               cd /home/ubuntu/github/Plickee_Backend
+               cd /home/ubuntu/github/node__plickee
                git pull origin main
                npm install
-               pm2 delete Plickee_Backend
-               pm2 start bin/www.js --name Plickee_Backend
+               pm2 delete plickeeapi
+               pm2 start bin/www.js --name plickeeapi
             
